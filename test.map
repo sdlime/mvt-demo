@@ -1,0 +1,144 @@
+MAP
+  NAME 'vector_tile_test'
+  SIZE 500 500
+  MAXSIZE 4096
+
+  SHAPEPATH "data"
+
+  PROJECTION
+    "+init=epsg:26915"
+  END
+
+  OUTPUTFORMAT
+    NAME "png8"
+    DRIVER AGG/PNG8
+    MIMETYPE "image/png; mode=8bit"
+    IMAGEMODE RGB
+    EXTENSION "png"
+    FORMATOPTION "QUANTIZE_FORCE=on"
+    FORMATOPTION "QUANTIZE_COLORS=256"
+    FORMATOPTION "GAMMA=0.75"
+    TRANSPARENT ON
+  END
+
+  WEB
+    METADATA
+      wms_enable_request "*"
+      WMS_TITLE 'Test mapfile for MVT development.'
+      WMS_ONLINERESOURCE 'http://mapserver.localhost/cgi-bin/mapserv?'
+      WMS_SRS 'epsg:3857 epsg:900913'
+    END
+  END
+
+  LAYER
+    NAME 'wma'
+    DATA 'bdry_adwma2py3'
+    TYPE POLYGON
+    STATUS OFF
+
+    PROJECTION "+init=epsg:26915" END
+
+    MAXSCALE 1000000
+
+    CLASS
+      COLOR "#f4b642"
+    END
+
+    METADATA
+       WMS_TITLE 'Minnesota Wildlife Management Areas (WMA)'
+       WMS_SRS 'epsg:3857 epsg:900913'    
+      "gml_unitname_alias" "name"
+      "gml_uniqueid_alias" "id"
+      "gml_include_items" "unitname,uniqueid"
+    END
+  END
+
+  LAYER
+    NAME 'sna'
+    DATA 'bdry_snapy3'
+    TYPE POLYGON
+    STATUS OFF
+
+    PROJECTION "+init=epsg:26915" END
+
+    CLASS
+      COLOR "#c082ed"
+    END
+
+    METADATA
+       WMS_TITLE 'Minnesota Scientific and Natural Areas (SNA)'
+       WMS_SRS 'epsg:3857 epsg:900913'
+      "gml_site_name_alias" "name"
+      "gml_bremcode_alias" "id"
+      "gml_include_items" "site_name,bremcode"
+    END
+  END
+
+  LAYER
+    NAME 'lakes'
+    DATA 'lake_dnrpy2'
+    TYPE POLYGON
+    STATUS OFF
+
+    PROJECTION "+init=epsg:26915" END
+
+    FILTERITEM 'usclass'
+    FILTER /^(402|412|421)$/
+
+    #FILTERITEM 'dowlknum'
+    #FILTER /^18053200$/
+
+    CLASS
+      COLOR "#0000ff"
+    END
+
+    METADATA
+       WMS_TITLE 'Minnesota Lakes'
+       WMS_SRS 'epsg:3857 epsg:900913'
+      "gml_lake_name_alias" "name"
+      "gml_dowlknum_alias" "id"
+      "gml_include_items" "lake_name,dowlknum"
+    END
+  END
+
+  LAYER
+    NAME 'major_roads'
+    DATA 'road_majorln3'
+    TYPE LINE
+    STATUS OFF
+
+    PROJECTION "+init=epsg:26915" END
+
+    CLASS COLOR 255 0 0 END
+
+    METADATA
+       WMS_TITLE 'Minnesota Major Roads (from MNDOT)'
+       WMS_SRS 'epsg:3857 epsg:900913'
+      "gml_road_class_alias" "type"
+      "gml_road_num_alias" "number"
+      "gml_include_items" "road_class,road_num"
+    END
+  END
+
+  LAYER
+    NAME 'places'
+    DATA 'plce_gnispt3'
+    TYPE POINT
+    STATUS OFF
+
+    PROJECTION "+init=epsg:26915" END
+
+    FILTERITEM 'feat_type'
+    FILTER 'ppl'
+
+    CLASS COLOR 0 0 0 END
+
+    METADATA
+       WMS_TITLE 'Minnesota Populated Places'
+       WMS_SRS 'epsg:3857 epsg:900913'
+      "gml_feat_name_alias" "name"
+      "gml_include_items" "feat_name,population"
+    END
+  END
+
+END

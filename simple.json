@@ -1,0 +1,127 @@
+{
+  "version": 8,
+  "name": "simple",
+  "sources": {
+    "compass": {
+      "type": "vector",
+      "tiles": ["http://mapserver.localhost/cgi-bin/mapserv?map=/Users/sdlime/work/mvt-demo/test.map&mode=tile&tilemode=gmap&tile={x}+{y}+{z}&layers=all&map.imagetype=mvt"]
+    }
+  },
+  "sprite": "https://openmaptiles.github.io/osm-bright-gl-style/sprite",
+  "glyphs": "https://free.tilehosting.com/fonts/{fontstack}/{range}.pbf?key=RiS4gsgZPZqeeMlIyxFo",
+  "layers": [
+    {
+      "id": "background",
+      "type": "background",
+      "paint": {
+        "background-color": "#f8f4f0"
+      }
+    },{
+      "id": "wma",
+      "type": "fill",
+      "source": "compass",
+      "source-layer": "wma",
+      "paint": {
+        "fill-color": "#f4b642"
+      }
+    },{
+      "id": "sna",
+      "type": "fill",
+      "source": "compass",
+      "source-layer": "sna",
+      "paint": {
+        "fill-color": "#c082ed"
+      }
+    },{
+      "id": "lakes",
+      "type": "fill",
+      "source": "compass",
+      "source-layer": "lakes",
+      "paint": {
+        "fill-color": "#a0c8f0"
+      }
+    },{
+      "id": "major roads",
+      "type": "line",
+      "source": "compass",
+      "source-layer": "major_roads",
+      "paint": {
+        "line-width": 2,
+        "line-color": "#cccccc"
+      }
+    },{
+      "interactive": true,
+      "id": "places",
+      "type": "circle",
+      "source": "compass",
+      "source-layer": "places",
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "circle-radius": 3,
+        "circle-color": "rgba(55,148,179,1)"
+      }
+    },{
+      "id": "lakes-name",
+      "type": "symbol",
+      "source": "compass",
+      "source-layer": "lakes",
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "Polygon"
+        ],
+        [
+          "has",
+          "name"
+        ],
+        [
+          "!=",
+          "name",
+          "Unnamed"
+        ]
+      ],
+      "layout": {
+        "text-font": [
+          "Open Sans Italic"
+        ],
+        "text-size": 12,
+        "text-field": "{name}",
+        "text-max-width": 5,
+        "text-rotation-alignment": "map",
+        "text-letter-spacing": 0.2,
+        "symbol-spacing": 350
+      },
+      "paint": {
+        "text-color": "#74aee9",
+        "text-halo-width": 1.5,
+        "text-halo-color": "rgba(255,255,255,0.7)"
+      }
+    },{
+      "id": "places-name",
+      "type": "symbol",
+      "source": "compass",
+      "source-layer": "places",
+      "filter": [
+        "all",
+        ["==", "$type", "Point"]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "text-font": [
+          "Open Sans Italic"
+        ],
+        "text-size": 14,
+        "text-field": "{name}"
+      },
+      "paint": {
+        "text-color": "#000000",
+        "text-halo-width": 1.5,
+        "text-halo-color": "rgba(255,255,255,0.7)"
+      }
+    }
+  ]
+}
