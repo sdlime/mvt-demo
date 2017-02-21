@@ -1,5 +1,5 @@
 Simple demo for MapServer Mapbox Vector Tile (MVT) support using the Mapbox-GL library.
 
-![Sample View](https://raw.githubusercontent.com/sdlime/mvt-demo/master/screenshot.png)
+![Sample View](https://raw.githubusercontent.com/sdlime/mvt-demo/master/screenshot.png = 350x389)
 
 Setup:
