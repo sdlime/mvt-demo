@@ -21,9 +21,17 @@ MAP
     TRANSPARENT ON
   END
 
+  OUTPUTFORMAT
+    NAME "mvt"
+    DRIVER MVT
+    FORMATOPTION "EXTENT=4096"
+    FORMATOPTION "EDGE_BUFFER=20"
+  END
+
   WEB
     METADATA
       wms_enable_request "*"
+      MVT_SIZE '512'
       WMS_TITLE 'Test mapfile for MVT development.'
       WMS_ONLINERESOURCE 'http://mapserver.localhost/cgi-bin/mapserv?'
       WMS_SRS 'epsg:3857 epsg:900913'
