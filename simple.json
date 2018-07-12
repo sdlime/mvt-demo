@@ -4,8 +4,7 @@
   "sources": {
     "compass": {
       "type": "vector",
-      "tiles": ["http://mapserver.localhost/cgi-bin/mapserv?map=/Users/sdlime/work/mvt-demo/demo.map&mode=tile&tilemode=gmap&tile={x}+{y}+{z}&layers=all&map.imagetype=mvt"],
-      "tiseSize": 512
+      "tiles": ["http://mapserver.localhost/cgi-bin/mapserv?map=/Users/sdlime/work/mvt-demo/demo.map&mode=tile&tilemode=gmap&tile={x}+{y}+{z}&layers=all&map.imagetype=mvt"]
     }
   },
   "sprite": "https://openmaptiles.github.io/osm-bright-gl-style/sprite",
