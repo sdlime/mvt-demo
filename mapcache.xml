@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- see the accompanying mapcache.xml.sample for a fully commented configuration file -->
+
+<mapcache>
+
+   <log_level>debug</log_level>
+   <auto_reload>true</auto_reload>
+
+   <cache name="disk" type="disk">
+      <base>/mapserver/tiles</base>
+      <symlink_blank/>
+   </cache>
+
+   <format name="PNGQ_FAST" type ="PNG">
+     <compression>fast</compression>
+     <colors>256</colors>
+   </format>
+
+   <format name="MVT" type="RAW"> 
+     <extension>mvt</extension>
+     <mime_type>application/vnd.mapbox-vector-tile</mime_type>
+   </format>
+
+   <default_format>JPEG</default_format>
+
+   <!-- WMS returns Mapbox Vector Tiles (.mvt) - for mvt_demo -->
+   <source name="mvt-demo-mvt_wms" type="wms">
+     <http>
+       <url>http://mapserver.localhost/cgi-bin/mapserv?</url>
+     </http>
+     <getmap>
+       <params>
+         <LAYERS>wma,sna,lakes,major_roads,places</LAYERS>
+         <FORMAT>application/vnd.mapbox-vector-tile</FORMAT>
+         <MAP>/mapserver/mvt-demo/demo.map</MAP>
+       </params>
+     </getmap>
+   </source>
+
+   <tileset name="mvt-demo-mvt">
+     <source>mvt-demo-mvt_wms</source>
+     <grid>g</grid>
+     <cache>disk</cache>
+     <format>MVT</format>
+   </tileset>
+
+   <!-- WMS returns PNG (.png) - for mvt_demo -->
+   <source name="mvt-demo-png_wms" type="wms">
+     <http>
+       <url>http://mapserver.localhost/cgi-bin/mapserv?</url>
+     </http>
+     <getmap>
+       <params>
+         <LAYERS>wma,sna,lakes,major_roads,places</LAYERS>
+         <TRANSPARENT>true</TRANSPARENT>
+         <FORMAT>image/png</FORMAT>
+         <MAP>/mapserver/mvt-demo/demo.map</MAP>
+       </params>
+     </getmap>
+   </source>
+
+   <tileset name="mvt-demo-png">
+     <source>mvt-demo-png_wms</source>
+     <grid>g</grid>
+     <cache>disk</cache>
+     <format>PNGQ_FAST</format>
+     <metatile>8 8</metatile>
+     <metabuffer>20</metabuffer>
+   </tileset>
+
+   <service type="wms" enabled="true"/>
+   <service type="wmts" enabled="true"/>
+   <service type="tms" enabled="true"/>
+   <service type="kml" enabled="true"/>
+   <service type="gmaps" enabled="true"/>
+   <service type="ve" enabled="true"/>
+   <service type="mapguide" enabled="true"/>
+   <service type="demo" enabled="true"/>
+
+   <errors>report</errors>
+   <locker type="disk">
+     <directory>/tmp</directory>
+     <timeout>300</timeout>
+   </locker>
+
+</mapcache>
