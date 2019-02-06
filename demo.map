@@ -31,7 +31,6 @@ MAP
   WEB
     METADATA
       wms_enable_request "*"
-      MVT_SIZE '512'
       WMS_TITLE 'Test mapfile for MVT development.'
       WMS_ONLINERESOURCE 'http://mapserver.localhost/cgi-bin/mapserv?'
       WMS_SRS 'epsg:3857 epsg:900913'
