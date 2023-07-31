@@ -34,7 +34,7 @@ MAP
       wms_enable_request "*"
       MVT_SIZE '512'
       WMS_TITLE 'Test mapfile for MVT development.'
-      WMS_ONLINERESOURCE 'http://127.0.0.1/cgi-bin/mapserv.exe?MAP=/ms4w/apps/mvt-demo/demo.map'
+      WMS_ONLINERESOURCE 'http://mapserver.localhost/cgi-bin/mapserv?'
       WMS_SRS 'EPSG:3857'
     END
   END
