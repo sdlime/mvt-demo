@@ -2,11 +2,12 @@ MAP
   NAME 'vector_tile_test'
   SIZE 500 500
   MAXSIZE 4096
+  #EXTENT 460056.3 5146297.2 496263.1 5176624.3
 
   SHAPEPATH "data"
 
   PROJECTION
-    "+init=epsg:26915"
+    "+init=EPSG:26915"
   END
 
   OUTPUTFORMAT
@@ -31,9 +32,10 @@ MAP
   WEB
     METADATA
       wms_enable_request "*"
+      MVT_SIZE '512'
       WMS_TITLE 'Test mapfile for MVT development.'
-      WMS_ONLINERESOURCE 'http://mapserver.localhost/cgi-bin/mapserv?'
-      WMS_SRS 'epsg:3857 epsg:900913'
+      WMS_ONLINERESOURCE 'http://127.0.0.1/cgi-bin/mapserv.exe?MAP=/ms4w/apps/mvt-demo/demo.map'
+      WMS_SRS 'EPSG:3857'
     END
   END
 
@@ -43,17 +45,20 @@ MAP
     TYPE POLYGON
     STATUS OFF
 
-    PROJECTION "+init=epsg:26915" END
+    PROJECTION "+init=EPSG:26915" END
 
     MAXSCALE 1000000
 
     CLASS
-      COLOR "#f4b642"
+      NAME 'Minnesota Wildlife Management Areas (WMA)'
+      STYLE
+        COLOR "#f4b642"
+      END
     END
 
     METADATA
        WMS_TITLE 'Minnesota Wildlife Management Areas (WMA)'
-       WMS_SRS 'epsg:3857 epsg:900913'    
+       WMS_SRS 'EPSG:3857'    
       "gml_unitname_alias" "name"
       "gml_uniqueid_alias" "id"
       "gml_include_items" "unitname,uniqueid"
@@ -66,15 +71,18 @@ MAP
     TYPE POLYGON
     STATUS OFF
 
-    PROJECTION "+init=epsg:26915" END
+    PROJECTION "+init=EPSG:26915" END
 
     CLASS
-      COLOR "#c082ed"
+      NAME 'Minnesota Scientific and Natural Areas (SNA)'    
+      STYLE
+        COLOR "#c082ed"
+      END
     END
 
     METADATA
        WMS_TITLE 'Minnesota Scientific and Natural Areas (SNA)'
-       WMS_SRS 'epsg:3857 epsg:900913'
+       WMS_SRS 'EPSG:3857'
       "gml_site_name_alias" "name"
       "gml_bremcode_alias" "id"
       "gml_include_items" "site_name,bremcode"
@@ -87,7 +95,7 @@ MAP
     TYPE POLYGON
     STATUS OFF
 
-    PROJECTION "+init=epsg:26915" END
+    PROJECTION "+init=EPSG:26915" END
 
     FILTERITEM 'usclass'
     FILTER /^(402|412|421)$/
@@ -96,12 +104,15 @@ MAP
     #FILTER /^18053200$/
 
     CLASS
-      COLOR "#0000ff"
+      NAME 'Minnesota Lakes'    
+      STYLE
+        COLOR "#0000ff"
+      END
     END
 
     METADATA
        WMS_TITLE 'Minnesota Lakes'
-       WMS_SRS 'epsg:3857 epsg:900913'
+       WMS_SRS 'EPSG:3857'
       "gml_lake_name_alias" "name"
       "gml_dowlknum_alias" "id"
       "gml_include_items" "lake_name,dowlknum"
@@ -114,13 +125,18 @@ MAP
     TYPE LINE
     STATUS OFF
 
-    PROJECTION "+init=epsg:26915" END
+    PROJECTION "+init=EPSG:26915" END
 
-    CLASS COLOR 255 0 0 END
+    CLASS
+      NAME 'Minnesota Major Roads (from MNDOT)'    
+      STYLE
+        COLOR 255 0 0
+      END
+    END
 
     METADATA
        WMS_TITLE 'Minnesota Major Roads (from MNDOT)'
-       WMS_SRS 'epsg:3857 epsg:900913'
+       WMS_SRS 'EPSG:3857'
       "gml_road_class_alias" "type"
       "gml_road_num_alias" "number"
       "gml_include_items" "road_class,road_num"
@@ -133,16 +149,21 @@ MAP
     TYPE POINT
     STATUS OFF
 
-    PROJECTION "+init=epsg:26915" END
+    PROJECTION "+init=EPSG:26915" END
 
     FILTERITEM 'feat_type'
     FILTER 'ppl'
 
-    CLASS COLOR 0 0 0 END
+    CLASS
+      NAME 'Minnesota Populated Places'    
+      STYLE
+        COLOR 0 0 0
+      END
+    END
 
     METADATA
        WMS_TITLE 'Minnesota Populated Places'
-       WMS_SRS 'epsg:3857 epsg:900913'
+       WMS_SRS 'EPSG:3857'
       "gml_feat_name_alias" "name"
       "gml_include_items" "feat_name,population"
     END
